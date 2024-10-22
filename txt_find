@@ -1,0 +1,27 @@
+import os
+
+# 파일이 저장된 디렉토리 경로
+directory = '/your/directory/path'
+
+# 검색할 문자열
+search_string = '찾고자 하는 문자열'
+
+# 결과를 저장할 리스트
+matching_files = []
+
+# 디렉토리 내 모든 파일 검색
+for filename in os.listdir(directory):
+    if filename.endswith(".txt"):  # txt 파일만 검색
+        file_path = os.path.join(directory, filename)
+        
+        # 파일을 읽고 특정 문자열이 있는지 확인
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+            if search_string in content:
+                matching_files.append(filename)
+
+# 결과 출력
+if matching_files:
+    print(f"'{search_string}' 문자열을 포함하는 파일들: {matching_files}")
+else:
+    print(f"'{search_string}' 문자열을 포함하는 파일을 찾을 수 없습니다.")
